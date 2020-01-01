@@ -29,8 +29,8 @@ defmodule Vimeo.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 1.6"},
-      {:poison, "~> 3.0"},
+      {:httpoison, "~> 0.9 or ~> 1.2 or ~> 1.6"},
+      {:poison, "~> 1.5 or ~> 2.0 or ~> 3.0"},
       {:earmark, "~> 0.1", only: [:dev, :docs]},
       {:ex_doc, "~> 0.10.0", only: [:dev, :docs]},
       {:inch_ex, "~> 2.0.0", only: [:dev, :docs]},
