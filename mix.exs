@@ -8,9 +8,9 @@ defmodule Vimeo.Mixfile do
       elixir: "~> 1.1",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      deps: deps,
-      description: description,
-      package: package,
+      deps: deps(),
+      description: description(),
+      package: package(),
       docs: [extras: ["README.md"]],
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [coveralls: :test]
@@ -22,22 +22,22 @@ defmodule Vimeo.Mixfile do
     [applications: app_list(Mix.env)]
   end
 
-  defp app_list(:dev), do: [:dotenv | app_list]
-  defp app_list(:test), do: [:dotenv | app_list]
-  defp app_list(_), do: app_list
+  defp app_list(:dev), do: [:dotenv | app_list()]
+  defp app_list(:test), do: [:dotenv | app_list()]
+  defp app_list(_), do: app_list()
   defp app_list, do: [:logger, :httpoison]
 
   defp deps do
     [
-      {:httpoison, "~> 0.9 or ~> 1.2 or ~> 1.6"},
-      {:poison, ">= 1.0.0"},
-      {:earmark, "~> 0.1", only: [:dev, :docs]},
-      {:ex_doc, "~> 0.10.0", only: [:dev, :docs]},
+      {:httpoison, "~> 2.1"},
+      {:poison, "~> 5.0"},
+      {:earmark, "~> 1.4", only: [:dev, :docs]},
+      {:ex_doc, "~> 0.30.3", only: [:dev, :docs]},
       {:inch_ex, "~> 2.0.0", only: [:dev, :docs]},
-      {:excoveralls, "~> 0.12.1", only: [:dev, :test]},
-      {:exvcr, "~> 0.11.0", only: [:dev, :test]},
-      {:dotenv, "~> 2.0.0", only: [:dev, :test]},
-      {:credo, "~> 1.1.5", only: [:dev, :test]}
+      {:excoveralls, "~> 0.16.1", only: [:dev, :test]},
+      {:exvcr, "~> 0.14.1", only: [:dev, :test]},
+      {:dotenv, "~> 3.1", only: [:dev, :test]},
+      {:credo, "~> 1.7", only: [:dev, :test]}
     ]
   end
 
@@ -49,9 +49,9 @@ defmodule Vimeo.Mixfile do
 
   defp package do
     [
-      maintainers: ["lilfaf"],
+      maintainers: ["dictatelife"],
       licenses: ["MIT"],
-      links: %{"Github" => "https://github.com/lilfaf/vimeo.ex"}
+      links: %{"Github" => "https://github.com/dictatelife/vimeo.ex"}
     ]
   end
 end

@@ -53,14 +53,14 @@ defmodule Vimeo.API do
   defp process_url(url), do: @endpoint <> url
 
   defp process_request_headers(headers) do
-    @headers ++ authorization_header ++ headers
+    @headers ++ authorization_header() ++ headers
   end
 
   defp process_request_body(""), do: ""
   defp process_request_body(body) do
     body
     |> Enum.into(%{})
-    |> Poison.encode!
+    |> Poison.encode!()
   end
 
   defp process_response_body(""), do: ""
@@ -75,7 +75,7 @@ defmodule Vimeo.API do
   defp do_request(method, url, body \\ "", params \\ %{}) do
     method
     |> request!(url, body, [], [params: params])
-    |> handle_response
+    |> handle_response()
   end
 
   defp handle_response(response) do
